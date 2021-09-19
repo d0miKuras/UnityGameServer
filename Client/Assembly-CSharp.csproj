@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\Packet.cs" />
      <Compile Include="Assets\Scripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\ItemSpawner.cs" />
+     <Compile Include="Assets\Scripts\ProjectileManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity Editors/2020.3.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -11,6 +11,11 @@ public class PlayerController : MonoBehaviour
         {
             ClientSend.PlayerShoot(camTransform.forward);
         }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            ClientSend.PlayerThrowItem(camTransform.forward);
+        }
     }
     private void FixedUpdate()
     {
@@ -18,7 +23,8 @@ public class PlayerController : MonoBehaviour
     }
     private void SendInputToServer()
     {
-        bool[] _input = new bool[] {
+        bool[] _input = new bool[]
+        {
             Input.GetKey (KeyCode.W),
             Input.GetKey (KeyCode.A),
             Input.GetKey (KeyCode.S),
