@@ -204,7 +204,7 @@ public class Client
                 }
             }
         }
-
+        // Send the new player to all players including himself
         foreach (Client _client in Server.clients.Values)
         {
             if (_client.player != null)
@@ -213,7 +213,14 @@ public class Client
             }
         }
 
+        foreach (ItemSpawner _itemSpawner in ItemSpawner.spawners.Values)
+        {
+            ServerSend.CreateItemSpawner(id, _itemSpawner.spawnerId, _itemSpawner.transform.position, _itemSpawner.hasItem);
+
+        }
     }
+
+
 
     private void Disconnect()
     {

@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Net;
 using System.Net.Sockets;
-using System;
+using UnityEngine;
 
 public class Client : MonoBehaviour
 {
@@ -156,13 +156,13 @@ public class Client : MonoBehaviour
             {
                 byte[] _packetBytes = receivedData.ReadBytes(_packetLength);
                 ThreadManager.ExecuteOnMainThread(() =>
-                {
-                    using (Packet _packet = new Packet(_packetBytes))
-                    {
-                        int _packetId = _packet.ReadInt();
-                        packetHandlers[_packetId](_packet);
-                    }
-                });
+               {
+                   using (Packet _packet = new Packet(_packetBytes))
+                   {
+                       int _packetId = _packet.ReadInt();
+                       packetHandlers[_packetId](_packet);
+                   }
+               });
 
                 _packetLength = 0;
                 if (receivedData.UnreadLength() >= 4)
@@ -274,13 +274,45 @@ public class Client : MonoBehaviour
     {
         packetHandlers = new Dictionary<int, PacketHandler>()
         {
-            { (int)ServerPackets.welcome, ClientHandle.Welcome },
-            { (int)ServerPackets.spawnPlayer, ClientHandle.SpawnPlayer },
-            { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
-            { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
-            { (int)ServerPackets.playerDisconnected, ClientHandle.PlayerDisconnected },
-            { (int)ServerPackets.playerHealth, ClientHandle.PlayerHealth },
-            { (int)ServerPackets.playerRespawned, ClientHandle.playerRespawned }
+            {
+            (int) ServerPackets.welcome, ClientHandle.Welcome
+            },
+            {
+            (int) ServerPackets.spawnPlayer,
+            ClientHandle.SpawnPlayer
+            },
+            {
+            (int) ServerPackets.playerPosition,
+            ClientHandle.PlayerPosition
+            },
+            {
+            (int) ServerPackets.playerRotation,
+            ClientHandle.PlayerRotation
+            },
+            {
+            (int) ServerPackets.playerDisconnected,
+            ClientHandle.PlayerDisconnected
+            },
+            {
+            (int) ServerPackets.playerHealth,
+            ClientHandle.PlayerHealth
+            },
+            {
+            (int) ServerPackets.playerRespawned,
+            ClientHandle.playerRespawned
+            },
+            {
+            (int) ServerPackets.createItemSpawner,
+            ClientHandle.CreateItemSpawner
+            },
+            {
+                (int)ServerPackets.itemSpawned,
+                ClientHandle.ItemSpawned
+            },
+            {
+                (int)ServerPackets.ItemPickedUp,
+                ClientHandle.ItemPickedUp
+            }
         };
         Debug.Log("Initialized packets.");
     }
